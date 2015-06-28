@@ -1,0 +1,69 @@
+# Russian translations for PACKAGE package
+# Английские переводы для пакета PACKAGE.
+# Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#  <server@host-18.localdomain>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-28 22:42+0700\n"
+"PO-Revision-Date: 2015-06-19 13:29+0700\n"
+"Last-Translator: server@host-18.localdomain\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.1\n"
+
+#: ldd-requires:29
+msgid "Missing arguments"
+msgstr "Пропущены аргументы"
+
+#: ldd-requires:41
+msgid "32-bit file"
+msgstr "32 битный файл"
+
+#: ldd-requires:42
+msgid "You have a 64 bit OS"
+msgstr "У вас 64 битная ОС"
+
+#: ldd-requires:48
+msgid "The list of missing libraries:"
+msgstr "Список отсутствующих библиотек:"
+
+#: ldd-requires:50
+msgid "Is search packages"
+msgstr "Идёт поиск пакетов, которые содержат запрашиваемые библиотеки"
+
+#: ldd-requires:51
+msgid "It may take a long time."
+msgstr "Это может занять длительное время"
+
+#: ldd-requires:64 ldd-requires:77
+msgid "Please install packages"
+msgstr "Пожалуйста установите пакеты:"
+
+#: ldd-requires:67
+msgid "Packages not find"
+msgstr "Пакеты не найдены"
+
+#: ldd-requires:70 ldd-requires:80
+msgid "All libraries are already installed"
+msgstr "Уже установлены все библиотеки"
+
+#: ldd-requires:73
+msgid "Architecture binary file corresponds to the OS"
+msgstr "Архитектура двоичного файла соответствует ОС"
+
+#: ldd-requires:83
+msgid "You cannot run 64 bit file on 32-bit OS"
+msgstr "Нельзя запустить  64-битный файл на 32-битной ОС"
+
+#: ldd-requires:85
+msgid "not a dynamic executable"
+msgstr "не является динамическим исполняемым файлом"

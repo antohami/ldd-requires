@@ -1,0 +1,87 @@
+#!/bin/bash
+#########################################################################
+#Copyright 2015 Anton Midyukov											#
+#																		#
+#This program is free software; you can redistribute it and/or modify	#
+#it under the terms of the GNU General Public License as published by	#
+#the Free Software Foundation; either version 3 of the License, or		#
+#(at your option) any later version.									#
+#																		#
+#This program is distributed in the hope that it will be useful,		#
+#but WITHOUT ANY WARRANTY; without even the implied warranty of			#
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the			#
+#GNU General Public License for more details.							#
+#   																	#
+#You should have received a copy of the GNU General Public License		#
+#along with this program; if not, write to the Free Software			#
+#Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,				#
+#MA 02110-1301, USA.													#
+#########################################################################
+
+export TEXTDOMAIN="ldd-requires" #name_file .mo
+export TEXTDOMAINDIR="/usr/share/locale"
+export OUTPUT_CHARSET=UTF-8
+. gettext.sh
+
+
+if [ -z "$1" ] #Если нет аргументов
+then
+	echo -e `gettext 'Missing arguments'`
+else
+	binary=`file $1 | cut -d " " -f3`
+	case $(arch) in
+	"x86_64")
+		binarch=64;;
+	"i686"|"i586"|"i486"|"i386")
+		binarch=32;;
+	esac	
+	#
+	case "$binary $binarch" in
+	"32-bit 64") #32 битный бинарик и 64 битная система
+		echo -e `gettext '32-bit file'`
+		echo -e `gettext 'You have a 64 bit OS'`
+		#создаём массив ldd_list, в который помещаем 
+		#список недостающих библиотек
+		ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
+		if [[ ${#ldd_list[*]} != 0 ]] #Если список не пуст
+		then
+			echo -e `gettext 'The list of missing libraries:'`
+			echo -e ${ldd_list[@]}
+			echo -e `gettext "Is search packages"`
+			echo -e `gettext "It may take a long time."`
+			#циклически ищем каждую библиотеку и добавляем
+			#в массив название пакетов их содержащих
+			for line in ${ldd_list[@]} 
+			do
+				package_found=`apt-cache search "$line"| grep i586 | cut -d " " -f1`
+				echo $package_found		
+				packages_list=( "${packages_list[@]}" "$package_found" )	
+			done   	
+			
+			#Если список найденных пакетов не пуст
+			if [[ ${#packages_list[*]} != 0 ]]
+			then
+				echo -e `gettext 'Please install packages'`
+				echo -e "apt-get install ${packages_list[@]}"
+			else	
+				echo -e `gettext 'Packages not find'`
+			fi
+		else
+			echo -e `gettext 'All libraries are already installed'`
+		fi;;
+	"32-bit 32"|"64-bit 64") #Архитектура бинарика соответствует ОС
+		echo -e `gettext 'Architecture binary file corresponds to the OS'`
+		ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
+		if [[ ${#ldd_list[*]} != 0 ]]
+		then
+			echo -e `gettext 'Please install packages'`
+			echo -e "apt-get install ${ldd_list[@]}"
+		else	
+			echo -e `gettext 'All libraries are already installed'`
+		fi;;
+	"64-bit 32") #если 64 битный бинарик и 32 битная система
+		echo -e `gettext 'You cannot run 64 bit file on 32-bit OS'`;;
+	*) #остальные варианты
+		echo -e "$1 `gettext 'not a dynamic executable'`";;
+	esac
+fi
