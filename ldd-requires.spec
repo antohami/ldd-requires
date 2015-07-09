@@ -4,7 +4,7 @@ Release: alt1
 
 Summary: Script for generate requires binary file 
 License: GPLv3
-Group: System
+Group: System/Base
 
 Url: https://github.com/midyukov-anton/ldd-requires
 Source: %name-%version.tar
