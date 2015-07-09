@@ -20,8 +20,10 @@ Script for generate requires binary file
 %prep
 %setup
 
-%install
+%build
 %make
+
+%install
 %make_install install DESTDIR=%buildroot
 
 %find_lang %name
@@ -32,8 +34,6 @@ Script for generate requires binary file
 
 
 %changelog
-* Thu Jul 09 2015 Anton Midyukov <antohami@altlinux.org> 1.1.1-alt1
-- New version
-
-* Tue Jul 07 2015 Anton Midyukov <antohami@altlinux.org> 1.0.0-alt1
+* Thu Jul 10 2015 Anton Midyukov <antohami@altlinux.org> 1.1.1-alt1
 - Initial publish
+
