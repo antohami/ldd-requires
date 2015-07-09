@@ -1,6 +1,6 @@
 Name: ldd-requires
 Version: 1.1.1
-Release: alt1
+Release: alt2
 
 Summary: Script for generate requires binary file
 License: GPLv3
@@ -34,6 +34,6 @@ Script for generate requires binary file
 
 
 %changelog
-* Thu Jul 10 2015 Anton Midyukov <antohami@altlinux.org> 1.1.1-alt1
+* Thu Jul 10 2015 Anton Midyukov <antohami@altlinux.org> 1.1.1-alt2
 - Initial publish
 
