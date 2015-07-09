@@ -1,6 +1,6 @@
 #!/bin/bash
 #########################################################################
-#Copyright 2015 Anton Midyukov											#
+#Copyright 2015 Anton Midyukov	<antohami@altlinux.org>					#
 #																		#
 #This program is free software; you can redistribute it and/or modify	#
 #it under the terms of the GNU General Public License as published by	#
@@ -27,17 +27,39 @@ export OUTPUT_CHARSET=UTF-8
 if [ -z "$1" ] #Если нет аргументов
 then
 	echo -e `gettext 'Missing arguments'`
-else
-	binary=`file $1 | cut -d " " -f3`
+elif [[ `file -i $1` =~ "executable" ]]
+then
+	file_out=`file $1`
+	for filearch in "386" "x86-64" "ARM" "other"
+	do
+		if [[ $file_out =~ $filearch ]]
+		then
+			break
+		fi
+	done
 	case $(arch) in
 	"x86_64")
-		binarch=64;;
+		sysarch="x86-64";;
 	"i686"|"i586"|"i486"|"i386")
-		binarch=32;;
+		sysarch="386";;
+	"arm")
+		sysarch="ARM";;
 	esac	
 	#
-	case "$binary $binarch" in
-	"32-bit 64") #32 битный бинарик и 64 битная система
+	echo $sysarch
+	if [[ $filearch = $sysarch ]] #Архитектура бинарика соответствует ОС
+	then
+		echo -e `gettext 'Architecture binary file corresponds to the OS'`
+		ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
+		if [[ ${#ldd_list[*]} != 0 ]]
+		then
+			echo -e `gettext 'Please install packages'`
+			echo -e "apt-get install ${ldd_list[@]}"
+		else	
+			echo -e `gettext 'All libraries are already installed'`
+		fi
+	elif [[ $filearch = 386 && $sysarch = x86-64 ]] #32 битный бинарик и 64 битная система
+	then
 		echo -e `gettext '32-bit file'`
 		echo -e `gettext 'You have a 64 bit OS'`
 		#создаём массив ldd_list, в который помещаем 
@@ -57,7 +79,6 @@ else
 				echo $package_found		
 				packages_list=( "${packages_list[@]}" "$package_found" )	
 			done   	
-			
 			#Если список найденных пакетов не пуст
 			if [[ ${#packages_list[*]} != 0 ]]
 			then
@@ -68,20 +89,10 @@ else
 			fi
 		else
 			echo -e `gettext 'All libraries are already installed'`
-		fi;;
-	"32-bit 32"|"64-bit 64") #Архитектура бинарика соответствует ОС
-		echo -e `gettext 'Architecture binary file corresponds to the OS'`
-		ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
-		if [[ ${#ldd_list[*]} != 0 ]]
-		then
-			echo -e `gettext 'Please install packages'`
-			echo -e "apt-get install ${ldd_list[@]}"
-		else	
-			echo -e `gettext 'All libraries are already installed'`
-		fi;;
-	"64-bit 32") #если 64 битный бинарик и 32 битная система
-		echo -e `gettext 'You cannot run 64 bit file on 32-bit OS'`;;
-	*) #остальные варианты
-		echo -e "$1 `gettext 'not a dynamic executable'`";;
-	esac
+		fi
+	else
+		echo -e `gettext 'You cannot run file'`
+	fi
+else
+	echo -e "$1 `gettext 'not a dynamic executable'`"
 fi

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 22:42+0700\n"
+"POT-Creation-Date: 2015-07-09 19:08+0700\n"
 "PO-Revision-Date: 2015-06-19 13:31+0700\n"
 "Last-Translator: server@host-18.localdomain\n"
 "Language-Team: Russian\n"
@@ -23,46 +23,46 @@ msgstr ""
 msgid "Missing arguments"
 msgstr "Missing arguments"
 
-#: ldd-requires:41
-msgid "32-bit file"
-msgstr "32-bit file"
-
-#: ldd-requires:42
-msgid "You have a 64 bit OS"
-msgstr "You have a 64 bit OS"
-
-#: ldd-requires:48
-msgid "The list of missing libraries:"
-msgstr "The list of missing libraries:"
-
-#: ldd-requires:50
-msgid "Is search packages"
-msgstr "There is a list of packages that contain the requested library"
-
-#: ldd-requires:51
-msgid "It may take a long time."
-msgstr "It may take a long time."
-
-#: ldd-requires:64 ldd-requires:77
-msgid "Please install packages"
-msgstr "Please install packages"
-
-#: ldd-requires:67
-msgid "Packages not find"
-msgstr "Packages not find"
-
-#: ldd-requires:70 ldd-requires:80
-msgid "All libraries are already installed"
-msgstr "All libraries are already installed"
-
-#: ldd-requires:73
+#: ldd-requires:53
 msgid "Architecture binary file corresponds to the OS"
 msgstr "Architecture binary file corresponds to the OS"
 
-#: ldd-requires:83
-msgid "You cannot run 64 bit file on 32-bit OS"
+#: ldd-requires:57 ldd-requires:86
+msgid "Please install packages"
+msgstr "Please install packages"
+
+#: ldd-requires:60 ldd-requires:92
+msgid "All libraries are already installed"
+msgstr "All libraries are already installed"
+
+#: ldd-requires:64
+msgid "32-bit file"
+msgstr "32-bit file"
+
+#: ldd-requires:65
+msgid "You have a 64 bit OS"
+msgstr "You have a 64 bit OS"
+
+#: ldd-requires:71
+msgid "The list of missing libraries:"
+msgstr "The list of missing libraries:"
+
+#: ldd-requires:73
+msgid "Is search packages"
+msgstr "There is a list of packages that contain the requested library"
+
+#: ldd-requires:74
+msgid "It may take a long time."
+msgstr "It may take a long time."
+
+#: ldd-requires:89
+msgid "Packages not find"
+msgstr "Packages not find"
+
+#: ldd-requires:95
+msgid "You cannot run file"
 msgstr "You cannot run 64 bit file on 32-bit OS"
 
-#: ldd-requires:85
+#: ldd-requires:98
 msgid "not a dynamic executable"
 msgstr "not a dynamic executable"
