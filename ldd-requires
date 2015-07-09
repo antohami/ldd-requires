@@ -46,7 +46,7 @@ then
 		sysarch="ARM";;
 	esac	
 	#
-	echo $sysarch
+	#echo $sysarch
 	if [[ $filearch = $sysarch ]] #Архитектура бинарика соответствует ОС
 	then
 		echo -e `gettext 'Architecture binary file corresponds to the OS'`
