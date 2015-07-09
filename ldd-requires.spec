@@ -7,7 +7,7 @@ License: GPLv3
 Group: System/Base
 
 Url: https://github.com/midyukov-anton/ldd-requires
-Source: %name-%version.tar
+Source: %name-%version.tar.gz
 
 BuildArch: noarch
 
