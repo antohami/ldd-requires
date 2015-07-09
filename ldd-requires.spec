@@ -1,5 +1,5 @@
 Name: ldd-requires
-Version: 1.0.0
+Version: 1.1.1
 Release: alt1
 
 Summary: Script for generate requires binary file
@@ -7,7 +7,7 @@ License: GPLv3
 Group: System/Base
 
 Url: https://github.com/midyukov-anton/ldd-requires
-Source: %name-%version.tar
+Source: %name-%version.tar.gz
 
 BuildArch: noarch
 
@@ -32,6 +32,8 @@ Script for generate requires binary file
 
 
 %changelog
+* Thu Jul 09 2015 Anton Midyukov <antohami@altlinux.org> 1.1.1-alt1
+- New version
+
 * Tue Jul 07 2015 Anton Midyukov <antohami@altlinux.org> 1.0.0-alt1
 - Initial publish
-

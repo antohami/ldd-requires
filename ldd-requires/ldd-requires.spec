@@ -1,22 +1,20 @@
 Name: ldd-requires
-Version: 1.0.0
+Version: 1.1.0
 Release: alt1
 
-Summary: Script for generate requires binary file 
+Summary: Script for generate requires binary file
 License: GPLv3
-Group: System
+Group: System/Base
 
 Url: https://github.com/midyukov-anton/ldd-requires
-Source: %name-%version.tar
+Source: %name-%version.tar.gz
 
 BuildArch: noarch
-Requires: glibc-utils
-Requires: gettext
 
 %description
 Script for generate requires binary file
 
-%description -l ru
+%description -l ru_RU.UTF8
 Скрипт определяет каких пакетов не хватает для запуска бинарного файла
 
 %prep
@@ -26,13 +24,16 @@ Script for generate requires binary file
 %make
 %make_install install DESTDIR=%buildroot
 
-%clean
-%{__rm} -rf %{buildroot}
+%find_lang %name
 
-%files
-%{_datadir}/locale/*/LC_MESSAGES/ldd-requires.mo
-%{_bindir}/ldd-requires
+%files -f %name.lang
+%_bindir/ldd-requires
+
+
 
 %changelog
-* Sun Jun 28 2015 Anton Midyukov <antoha-mi@ya.ru> 1.0.0-alt1
+* Thu Jul 09 2015 Anton Midyukov <antohami@altlinux.org> 1.1.0-alt1
+- New version
+
+* Tue Jul 07 2015 Anton Midyukov <antohami@altlinux.org> 1.0.0-alt1
 - Initial publish

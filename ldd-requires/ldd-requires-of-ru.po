@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-28 22:42+0700\n"
+"POT-Creation-Date: 2015-07-09 19:08+0700\n"
 "PO-Revision-Date: 2015-06-19 13:29+0700\n"
 "Last-Translator: server@host-18.localdomain\n"
 "Language-Team: Russian\n"
@@ -24,46 +24,46 @@ msgstr ""
 msgid "Missing arguments"
 msgstr "Пропущены аргументы"
 
-#: ldd-requires:41
-msgid "32-bit file"
-msgstr "32 битный файл"
-
-#: ldd-requires:42
-msgid "You have a 64 bit OS"
-msgstr "У вас 64 битная ОС"
-
-#: ldd-requires:48
-msgid "The list of missing libraries:"
-msgstr "Список отсутствующих библиотек:"
-
-#: ldd-requires:50
-msgid "Is search packages"
-msgstr "Идёт поиск пакетов, которые содержат запрашиваемые библиотеки"
-
-#: ldd-requires:51
-msgid "It may take a long time."
-msgstr "Это может занять длительное время"
-
-#: ldd-requires:64 ldd-requires:77
-msgid "Please install packages"
-msgstr "Пожалуйста установите пакеты:"
-
-#: ldd-requires:67
-msgid "Packages not find"
-msgstr "Пакеты не найдены"
-
-#: ldd-requires:70 ldd-requires:80
-msgid "All libraries are already installed"
-msgstr "Уже установлены все библиотеки"
-
-#: ldd-requires:73
+#: ldd-requires:53
 msgid "Architecture binary file corresponds to the OS"
 msgstr "Архитектура двоичного файла соответствует ОС"
 
-#: ldd-requires:83
-msgid "You cannot run 64 bit file on 32-bit OS"
-msgstr "Нельзя запустить  64-битный файл на 32-битной ОС"
+#: ldd-requires:57 ldd-requires:86
+msgid "Please install packages"
+msgstr "Пожалуйста установите пакеты:"
 
-#: ldd-requires:85
+#: ldd-requires:60 ldd-requires:92
+msgid "All libraries are already installed"
+msgstr "Уже установлены все библиотеки"
+
+#: ldd-requires:64
+msgid "32-bit file"
+msgstr "32 битный файл"
+
+#: ldd-requires:65
+msgid "You have a 64 bit OS"
+msgstr "У вас 64 битная ОС"
+
+#: ldd-requires:71
+msgid "The list of missing libraries:"
+msgstr "Список отсутствующих библиотек:"
+
+#: ldd-requires:73
+msgid "Is search packages"
+msgstr "Идёт поиск пакетов, которые содержат запрашиваемые библиотеки"
+
+#: ldd-requires:74
+msgid "It may take a long time."
+msgstr "Это может занять длительное время"
+
+#: ldd-requires:89
+msgid "Packages not find"
+msgstr "Пакеты не найдены"
+
+#: ldd-requires:95
+msgid "You cannot run file"
+msgstr "Вы не сможите запустить данную программу на вашей ОС"
+
+#: ldd-requires:98
 msgid "not a dynamic executable"
 msgstr "не является динамическим исполняемым файлом"
