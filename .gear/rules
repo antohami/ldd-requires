@@ -1,1 +1,2 @@
-tar.gz: ldd-requires
+tar.gz: . name=@name@-@version@ base=@name@-@version@
+spec: .gear/ldd-requires.spec
