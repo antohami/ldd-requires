@@ -36,7 +36,7 @@ find_requires () {
         #циклически ищем каждую библиотеку и добавляем
         #в массив название пакетов их содержащих
         for line in ${ldd_list[@]}; do
-            package_found=`apt-cache search "$line"| grep $2 i586 | cut -d " " -f1`
+            package_found=`apt-cache search "$line"| grep $2 i586 | grep -v debuginfo | cut -d " " -f1`
             if [[ $package_found != '' ]]; then
                 echo $package_found
                 packages_list=( "${packages_list[@]}" "$package_found" ) 
