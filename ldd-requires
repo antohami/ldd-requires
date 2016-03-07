@@ -27,7 +27,8 @@ find_requires () {
     #создаём массив ldd_list, в который помещаем 
     #список недостающих библиотек
     ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
-    if [[ ${#ldd_list[*]} != 0 ]]; then #Если список не пуст
+    #Если список не пуст
+    if [[ ${#ldd_list[*]} != 0 ]]; then
         echo -e `gettext 'The list of missing libraries:'`
         echo -e ${ldd_list[@]}
         echo -e `gettext "Is search packages"`
@@ -58,17 +59,13 @@ find_requires () {
         echo -e `gettext 'All libraries are already installed'`
     fi
 }
-
-if [ -z "$1" ] #Если нет аргументов
-then
+#Если нет аргументов
+if [ -z "$1" ]; then
     echo -e `gettext 'Missing arguments'`
-elif [[ `file $1` =~ "ELF" ]]
-then
+elif [[ `file $1` =~ "ELF" ]]; then
     file_out=`file $1`
-    for filearch in "386" "x86-64" "ARM" "other"
-    do
-        if [[ $file_out =~ $filearch ]]
-        then
+    for filearch in "386" "x86-64" "ARM" "other"; do
+        if [[ $file_out =~ $filearch ]]; then
             break
         fi
     done
@@ -79,15 +76,13 @@ then
         sysarch="386";;
     "arm")
         sysarch="ARM";;
-    esac    
-    #
-    #echo $sysarch
-    if [[ $filearch = $sysarch ]] #Архитектура бинарика соответствует ОС
-    then
+    esac
+    #Архитектура бинарика соответствует ОС
+    if [[ $filearch = $sysarch ]]; then
         echo -e `gettext 'Architecture binary file corresponds to the OS'`
         find_requires $1 "-v"
-    elif [[ $filearch = 386 && $sysarch = x86-64 ]] #32 битный бинарик и 64 битная система
-    then
+    #32 битный бинарик и 64 битная система
+    elif [[ $filearch = 386 && $sysarch = x86-64 ]]; then
         echo -e `gettext '32-bit file'`
         echo -e `gettext 'You have a 64 bit OS'`
         find_requires $1
