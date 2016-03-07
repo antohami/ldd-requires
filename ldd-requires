@@ -23,11 +23,46 @@ export TEXTDOMAINDIR="/usr/share/locale"
 export OUTPUT_CHARSET=UTF-8
 . gettext.sh
 
+find_requires () {
+    #создаём массив ldd_list, в который помещаем 
+    #список недостающих библиотек
+    ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
+    if [[ ${#ldd_list[*]} != 0 ]]; then #Если список не пуст
+        echo -e `gettext 'The list of missing libraries:'`
+        echo -e ${ldd_list[@]}
+        echo -e `gettext "Is search packages"`
+        echo -e `gettext "It may take a long time."`
+        #циклически ищем каждую библиотеку и добавляем
+        #в массив название пакетов их содержащих
+        for line in ${ldd_list[@]}; do
+            package_found=`apt-cache search "$line"| grep $2 i586 | cut -d " " -f1`
+            if [[ $package_found != '' ]]; then
+                echo $package_found
+                packages_list=( "${packages_list[@]}" "$package_found" ) 
+            else
+                no_packages_list=( "${no_packages_list[@]}" "$line" )
+            fi
+        done       
+        #Если список найденных пакетов не пуст
+        if [[ ${#packages_list[*]} != 0 ]]; then
+            echo -e `gettext 'Please install packages'`
+            echo -e "apt-get install ${packages_list[@]}"
+        else    
+            echo -e `gettext 'Packages not find'`
+        fi
+        if [[ ${#no_packages_list[*]} != 0 ]]; then
+            echo -e `gettext 'The following library is not in the repository:'`
+            echo -e "${no_packages_list[@]}"
+        fi
+    else
+        echo -e `gettext 'All libraries are already installed'`
+    fi
+}
 
 if [ -z "$1" ] #Если нет аргументов
 then
     echo -e `gettext 'Missing arguments'`
-elif [[ `file -i $1` =~ "executable" ]]
+elif [[ `file $1` =~ "ELF" ]]
 then
     file_out=`file $1`
     for filearch in "386" "x86-64" "ARM" "other"
@@ -50,46 +85,12 @@ then
     if [[ $filearch = $sysarch ]] #Архитектура бинарика соответствует ОС
     then
         echo -e `gettext 'Architecture binary file corresponds to the OS'`
-        ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
-        if [[ ${#ldd_list[*]} != 0 ]]
-        then
-            echo -e `gettext 'Please install packages'`
-            echo -e "apt-get install ${ldd_list[@]}"
-        else    
-            echo -e `gettext 'All libraries are already installed'`
-        fi
+        find_requires $1 "-v"
     elif [[ $filearch = 386 && $sysarch = x86-64 ]] #32 битный бинарик и 64 битная система
     then
         echo -e `gettext '32-bit file'`
         echo -e `gettext 'You have a 64 bit OS'`
-        #создаём массив ldd_list, в который помещаем 
-        #список недостающих библиотек
-        ldd_list=( $(ldd $1 | grep "not found" | uniq | cut -d " " -f1) )
-        if [[ ${#ldd_list[*]} != 0 ]] #Если список не пуст
-        then
-            echo -e `gettext 'The list of missing libraries:'`
-            echo -e ${ldd_list[@]}
-            echo -e `gettext "Is search packages"`
-            echo -e `gettext "It may take a long time."`
-            #циклически ищем каждую библиотеку и добавляем
-            #в массив название пакетов их содержащих
-            for line in ${ldd_list[@]} 
-            do
-                package_found=`apt-cache search "$line"| grep i586 | cut -d " " -f1`
-                echo $package_found        
-                packages_list=( "${packages_list[@]}" "$package_found" )    
-            done       
-            #Если список найденных пакетов не пуст
-            if [[ ${#packages_list[*]} != 0 ]]
-            then
-                echo -e `gettext 'Please install packages'`
-                echo -e "apt-get install ${packages_list[@]}"
-            else    
-                echo -e `gettext 'Packages not find'`
-            fi
-        else
-            echo -e `gettext 'All libraries are already installed'`
-        fi
+        find_requires $1
     else
         echo -e `gettext 'You cannot run file'`
     fi
