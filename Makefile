@@ -1,4 +1,4 @@
-obj_locale = ru en
+obj_locale = ru
 obj_script = ldd-requires
 
 all: msgfmt

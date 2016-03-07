@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-09 19:08+0700\n"
-"PO-Revision-Date: 2015-06-19 13:29+0700\n"
+"POT-Creation-Date: 2016-03-07 00:26+0700\n"
+"PO-Revision-Date: 2016-03-07 00:29+0700\n"
 "Last-Translator: server@host-18.localdomain\n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -20,50 +20,54 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 1.8.1\n"
 
-#: ldd-requires:29
-msgid "Missing arguments"
-msgstr "Пропущены аргументы"
-
-#: ldd-requires:53
-msgid "Architecture binary file corresponds to the OS"
-msgstr "Архитектура двоичного файла соответствует ОС"
-
-#: ldd-requires:57 ldd-requires:86
-msgid "Please install packages"
-msgstr "Пожалуйста установите пакеты:"
-
-#: ldd-requires:60 ldd-requires:92
-msgid "All libraries are already installed"
-msgstr "Уже установлены все библиотеки"
-
-#: ldd-requires:64
-msgid "32-bit file"
-msgstr "32 битный файл"
-
-#: ldd-requires:65
-msgid "You have a 64 bit OS"
-msgstr "У вас 64 битная ОС"
-
-#: ldd-requires:71
+#: ldd-requires:32
 msgid "The list of missing libraries:"
 msgstr "Список отсутствующих библиотек:"
 
-#: ldd-requires:73
+#: ldd-requires:34
 msgid "Is search packages"
 msgstr "Идёт поиск пакетов, которые содержат запрашиваемые библиотеки"
 
-#: ldd-requires:74
+#: ldd-requires:35
 msgid "It may take a long time."
 msgstr "Это может занять длительное время"
 
-#: ldd-requires:89
+#: ldd-requires:49
+msgid "Please install packages"
+msgstr "Пожалуйста установите пакеты:"
+
+#: ldd-requires:52
 msgid "Packages not find"
 msgstr "Пакеты не найдены"
 
-#: ldd-requires:95
+#: ldd-requires:55
+msgid "The following library is not in the repository:"
+msgstr "Следующих библиотек нет в репозитории:"
+
+#: ldd-requires:59
+msgid "All libraries are already installed"
+msgstr "Уже установлены все библиотеки"
+
+#: ldd-requires:65
+msgid "Missing arguments"
+msgstr "Пропущены аргументы"
+
+#: ldd-requires:84
+msgid "Architecture binary file corresponds to the OS"
+msgstr "Архитектура двоичного файла соответствует ОС"
+
+#: ldd-requires:88
+msgid "32-bit file"
+msgstr "32 битный файл"
+
+#: ldd-requires:89
+msgid "You have a 64 bit OS"
+msgstr "У вас 64 битная ОС"
+
+#: ldd-requires:92
 msgid "You cannot run file"
 msgstr "Вы не сможите запустить данную программу на вашей ОС"
 
-#: ldd-requires:98
+#: ldd-requires:95
 msgid "not a dynamic executable"
 msgstr "не является динамическим исполняемым файлом"
